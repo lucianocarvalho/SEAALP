@@ -10,9 +10,10 @@ class Dashboard extends CI_Controller {
     }
 
     public function index() {
-        $data = array();
-        $data['teste'] = 'Luciano';
+        $this->template->load_view('dashboard-view');
+    }
 
-        $this->template->load_view('dashboard-view', $data );
+    public function admin() {
+        $this->template->load_view('admin-view');
     }
 }

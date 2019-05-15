@@ -54,3 +54,12 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 $route['migrate'] = 'migrate/index';
+
+$route['cadastrar'] = 'usuarios/cadastrar';
+
+$route['login'] = 'login/index';
+$route['login/auth'] = 'login/auth';
+$route['logout'] = 'login/logout';
+
+
+$route['admin/conteudos'] = 'conteudos/index';

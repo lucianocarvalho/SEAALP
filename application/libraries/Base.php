@@ -12,7 +12,7 @@ class Base {
 	 * Método para preencher os atributos da classe que estenda.
 	 * 
 	 * @param array $params
-	 * @return void
+	 * @return self
 	 */
 	public function fill( $params ) {
 		foreach( $params as $key=>$param ) {
@@ -21,6 +21,24 @@ class Base {
 			if( is_callable( array( $this, $method ) ) )
 				call_user_func( array( $this, $method ), $param );
 		}
+
+		return $this;
+	}
+
+	/**
+	 * Método para setar uma chave específica do objeto.
+	 * 
+	 * @param string $key
+	 * @param string $value
+	 * @return self
+	 */
+	public function set( $key, $value ) {
+		$method = 'set' . ucfirst( $key );
+
+		if( is_callable( array( $this, $method ) ) )
+				call_user_func( array( $this, $method ), $value );
+
+		return $this;
 	}
 	
 	/**

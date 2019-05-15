@@ -8,6 +8,7 @@ class Usuario extends Base {
 
 	protected $id;
 	protected $nome;
+	protected $email;
 	protected $sexo;
 	protected $perfil;
 	protected $matricula;
@@ -22,6 +23,11 @@ class Usuario extends Base {
 				'auto_increment' => true
 			),
 			'nome' => array(
+				'type' => 'VARCHAR',
+				'constraint' => 255,
+				'null' => false
+			),
+			'email' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 255,
 				'null' => false
@@ -63,6 +69,14 @@ class Usuario extends Base {
 
 	public function setNome($nome){
 		$this->nome = $nome;
+	}
+
+	public function getEmail(){
+		return $this->email;
+	}
+
+	public function setEmail($email){
+		$this->email = $email;
 	}
 
 	public function getSexo(){

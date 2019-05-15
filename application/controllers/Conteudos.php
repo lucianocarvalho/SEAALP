@@ -6,6 +6,7 @@ class Conteudos extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+        $this->load->library('conteudo');
         $this->load->model('conteudos_model');
 		$this->template->set_template("templates/template");
     }
@@ -32,6 +33,31 @@ class Conteudos extends CI_Controller {
     }
 
     public function cadastrar() {
-        $this->template->load_view('dashboard-view');
+
+        $this->form_validation->set_rules('titulo', 'Título', 'required');
+        $this->form_validation->set_rules('texto', 'Texto', 'required');
+
+        if( $this->form_validation->run() ) {
+            $conteudo = new Conteudo;
+            $conteudo->fill( $this->input->post() );
+
+            $this->conteudos_model->inserir( $conteudo );
+
+            redirect('/admin/conteudos');
+        }
+
+        $this->template->load_view('conteudos/cadastrar-view');
+    }
+
+    public function visualizar( $id ) {
+        $data['conteudo'] = $this->conteudos_model->selecionar( $id );
+        $this->template->load_view('conteudos/visualizar-view', $data );
+    }
+
+    public function remover( $id ) {
+        if( $this->conteudos_model->remover( $id ) )
+            $this->flashmessages->success('Removido com sucesso!');
+
+        redirect('/admin/conteudos');
     }
 }

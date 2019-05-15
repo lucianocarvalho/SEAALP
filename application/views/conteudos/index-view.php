@@ -15,11 +15,16 @@
 		<th>#</th>
 		<th>Título</th>
 		<th>Conteúdo</th>
+		<th>Exemplos</th>
 		<th>Ações</th>
 	</thead>
 
 	<?php if( count( $conteudos ) == 0 ): ?>
-
+		<tbody>
+			<tr>
+				<td colspan="5">Não foi encontrado nenhum resultado.</td>
+			</tr>
+		</tbody>
 	<?php else: ?>
 		<tbody>
 			<?php foreach( $conteudos as $conteudo ): ?>
@@ -27,6 +32,7 @@
 					<td><?php echo $conteudo['id']; ?></td>
 					<td><?php echo $conteudo['titulo']; ?></td>
 					<td><?php echo $conteudo['texto']; ?></td>
+					<td>10</td>
 					<td>
 						<a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/conteudos/visualizar/' . $conteudo['id'] ); ?>">Visualizar</a>
 						<a class="btn btn-sm btn-dark" href="<?php echo base_url('admin/conteudos/editar/' . $conteudo['id'] ); ?>">Editar</a>

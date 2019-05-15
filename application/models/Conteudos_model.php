@@ -30,4 +30,16 @@ class Conteudos_Model extends CI_Model {
         $this->db->set( $conteudo->to_array() );
 		return $this->db->insert( $this->table );
     }
+
+    public function selecionar( $id ) {
+        $this->db->select();
+        $this->db->from( $this->table );
+        $this->db->where('id', $id );
+        return $this->db->get()->row();
+    }
+
+    public function remover( $id ) {
+        $this->db->where('id', $id );
+        return $this->db->delete( $this->table );
+    }
 }

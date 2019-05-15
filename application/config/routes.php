@@ -61,5 +61,10 @@ $route['login'] = 'login/index';
 $route['login/auth'] = 'login/auth';
 $route['logout'] = 'login/logout';
 
+$route['admin'] = 'dashboard/admin';
 
 $route['admin/conteudos'] = 'conteudos/index';
+$route['admin/conteudos/cadastrar'] = 'conteudos/cadastrar';
+$route['admin/conteudos/visualizar/(:num)'] = 'conteudos/visualizar/$1';
+$route['admin/conteudos/editar/(:num)'] = 'conteudos/editar/$1';
+$route['admin/conteudos/remover/(:num)'] = 'conteudos/remover/$1';

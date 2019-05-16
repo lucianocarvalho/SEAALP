@@ -1,8 +1,8 @@
 <?php
 
-class Conteudos_Model extends CI_Model {
+class Exercicios_model extends CI_Model {
 
-    private $table = 'conteudos';
+    private $table = 'exercicios';
 
     public function buscar( $string = '', $type = "normal", $quantidade = 30, $pagina = 0 ) {
 
@@ -10,8 +10,7 @@ class Conteudos_Model extends CI_Model {
         $this->db->from( $this->table );
 
         $this->db->group_start();
-        $this->db->like('titulo', $string );
-        $this->db->or_like('texto', $string );
+        $this->db->like('enunciado', $string );
         $this->db->group_end();
 
         if( $type == 'count' )
@@ -25,10 +24,16 @@ class Conteudos_Model extends CI_Model {
         return $this->db->get()->result_array();
     }
 
-    public function inserir( Conteudo $conteudo )
+    public function inserir( Exercicio $exercicio )
     {
-        $this->db->set( $conteudo->to_array() );
+        $this->db->set( $exercicio->to_array() );
 		return $this->db->insert( $this->table );
+    }
+
+    public function inserir_id( Exercicio $exercicio ) {
+        $this->db->set( $exercicio->to_array() );
+		$this->db->insert( $this->table );
+		return $this->db->insert_id();
     }
 
     public function selecionar( $id ) {
@@ -41,11 +46,5 @@ class Conteudos_Model extends CI_Model {
     public function remover( $id ) {
         $this->db->where('id', $id );
         return $this->db->delete( $this->table );
-    }
-
-    public function listar() {
-        $this->db->select();
-        $this->db->from( $this->table );
-        return $this->db->get()->result_array();
     }
 }

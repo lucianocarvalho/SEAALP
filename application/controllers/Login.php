@@ -37,7 +37,8 @@ class Login extends CI_Controller {
                 $this->session->set_userdata( $data );
 
                 $this->flashmessages->success('Autenticado com sucesso!');
-                redirect('/admin');
+
+                redirect( ( $result->perfil == "A" ) ? '/' : '/admin');
             } else {
                 $this->flashmessages->error('Dados inválidos. Por favor, preencha os dados corretamente.');
             }

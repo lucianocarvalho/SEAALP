@@ -1,5 +1,17 @@
-
-<a href="<?php echo base_url('admin/conteudos/cadastrar'); ?>" class="btn btn-primary">Novo conteúdo</a>
+<form method="GET">
+	<div class="form-row">
+		<div class="col-lg-10">
+			<input type="text" class="form-control" name="search" placeholder="Digite a sua busca..." value="<?php echo isset( $search ) ? $search : ''; ?>">
+		</div>
+		<div class="col-lg-2">
+			<div class="w-100 d-table h-100">
+            	<div class="w-100 d-table-cell align-middle text-right">
+					<button class="btn btn-primary w-100"><i class="fas fa-search"></i> Buscar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
 
 <p class="bold mb-3 mt-3">
 	<?php echo count( $conteudos ); ?> registros
@@ -12,10 +24,9 @@
 
 <table class="table table-hover table-striped">
 	<thead>
-		<th>#</th>
 		<th>Título</th>
-		<th>Conteúdo</th>
-		<th>Ações</th>
+		<th>Duração aproximada</th>
+		<th class="w-25 text-center"><i class="fas fa-play"></i></th>
 	</thead>
 
 	<?php if( count( $conteudos ) == 0 ): ?>
@@ -28,14 +39,10 @@
 		<tbody>
 			<?php foreach( $conteudos as $conteudo ): ?>
 				<tr>
-					<td><?php echo $conteudo['id']; ?></td>
 					<td><?php echo $conteudo['titulo']; ?></td>
-					<td><?php echo $conteudo['texto']; ?></td>
-					<td>
-						<a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/conteudos/visualizar/' . $conteudo['id'] ); ?>">Visualizar</a>
-						<a class="btn btn-sm btn-dark" href="<?php echo base_url('admin/conteudos/editar/' . $conteudo['id'] ); ?>">Editar</a>
-						<a class="btn btn-sm btn-success" href="<?php echo base_url('admin/exemplos/' . $conteudo['id'] ); ?>">Exemplos</a>
-						<a class="btn btn-sm btn-danger" href="<?php echo base_url('admin/conteudos/remover/' . $conteudo['id'] ); ?>">Remover</a>
+					<td><?php echo reading_time( $conteudo['texto'] ); ?></td>
+					<td align="center">
+						<a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/conteudos/visualizar/' . $conteudo['id'] ); ?>"><i class="fas fa-play"></i> Iniciar conteúdo</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

@@ -68,3 +68,16 @@ $route['admin/conteudos/cadastrar'] = 'conteudos/cadastrar';
 $route['admin/conteudos/visualizar/(:num)'] = 'conteudos/visualizar/$1';
 $route['admin/conteudos/editar/(:num)'] = 'conteudos/editar/$1';
 $route['admin/conteudos/remover/(:num)'] = 'conteudos/remover/$1';
+
+$route['admin/exercicios'] = 'exercicios/index';
+$route['admin/exercicios/cadastrar'] = 'exercicios/cadastrar';
+$route['admin/exercicios/visualizar/(:num)'] = 'exercicios/visualizar/$1';
+$route['admin/exercicios/editar/(:num)'] = 'exercicios/editar/$1';
+$route['admin/exercicios/remover/(:num)'] = 'exercicios/remover/$1';
+$route['admin/exercicios/redigir/(:num)'] = 'exercicios/redigir/$1';
+
+$route['admin/exemplos/(:num)'] = 'exemplos/index/$1';
+$route['admin/exemplos/cadastrar/(:num)'] = 'exemplos/cadastrar/$1';
+
+
+$route['painel/conteudos'] = 'dashboard/conteudos';

@@ -55,7 +55,7 @@
 						<?php endif; ?>
 					</td>
 					<td class="align-middle" align="right">
-						<a class="btn btn-sm btn-primary" href="<?php echo base_url('painel/exercicios/realizar/' . $exercicio['id'] ); ?>"> Realizar exercício <i class="fas fa-angle-double-right"></i></a>
+						<a class="btn btn-sm btn-primary" href="<?php echo base_url('painel/exercicios/realizar/' . $exercicio['id'] ); ?>"> Exercitar <i class="fas fa-angle-double-right"></i></a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

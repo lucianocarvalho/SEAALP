@@ -53,7 +53,7 @@
 <p>Quantidade de lacunas: <b><?php echo substr_count( $lacunas->texto, '%lacuna%'); ?></b></p>
 <form method="POST" action="<?php echo base_url('painel/exercicios/corrigir'); ?>">
 	<div class="form-group">
-		<textarea class="form-control" placeholder="Digite as lacunas separadas por vírgula..."></textarea>
+		<textarea class="form-control" placeholder="Digite as lacunas separadas por vírgula..." name="lacunas"></textarea>
 	</div>
 
 	<input type="hidden" name="idExercicio" value="<?php echo $exercicio->id; ?>">

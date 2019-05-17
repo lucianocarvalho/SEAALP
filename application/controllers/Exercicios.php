@@ -180,7 +180,7 @@ class Exercicios extends CI_Controller {
             $data['resposta'] = $this->certo_errado_model->selecionar( $this->input->post('idExercicio') );
             $view = 'aluno/corrigir-exercicio-ce-view';
         } elseif( $data['exercicio']->tipo == "LA" ) {
-            $data['lacunas'] = $this->lacunas_model->selecionar( $this->input->post('idExercicio') );
+            $data['lacuna'] = $this->lacunas_model->selecionar( $this->input->post('idExercicio') );
             $view = 'aluno/corrigir-exercicio-la-view';
         } elseif( $data['exercicio']->tipo == "BO" ) {
 

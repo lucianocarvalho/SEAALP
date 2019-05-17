@@ -81,3 +81,12 @@ $route['admin/exemplos/cadastrar/(:num)'] = 'exemplos/cadastrar/$1';
 
 
 $route['painel/conteudos'] = 'dashboard/conteudos';
+$route['painel/conteudos/visualizar/(:any)'] = 'conteudos/visualizar_aluno/$1';
+
+$route['painel/anotacoes/cadastrar/(:any)'] = 'anotacoes/cadastrar/$1';
+$route['painel/anotacoes/remover/(:any)'] = 'anotacoes/remover/$1';
+
+$route['painel/exercicios'] = 'exercicios/listar_aluno';
+$route['painel/exercicios/realizar/(:num)'] = 'exercicios/realizar/$1';
+
+$route['painel/exercicios/corrigir'] = 'exercicios/corrigir';

@@ -60,4 +60,12 @@ class Conteudos extends CI_Controller {
 
         redirect('/admin/conteudos');
     }
+
+    public function visualizar_aluno( $id ) {
+        $this->load->model( array('anotacoes_model', 'exemplos_model') );
+        $data['conteudo'] = $this->conteudos_model->selecionar( $id );
+        $data['anotacoes'] = $this->anotacoes_model->listar( $id );
+        $data['exemplos'] = $this->exemplos_model->listar( $id );
+        $this->template->load_view('aluno/visualizar-conteudo-view', $data );
+    }
 }

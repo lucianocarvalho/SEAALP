@@ -6,8 +6,10 @@ class Exercicios_model extends CI_Model {
 
     public function buscar( $string = '', $type = "normal", $quantidade = 30, $pagina = 0 ) {
 
-        $this->db->select();
+        $this->db->select('conteudos.*, exercicios.*');
         $this->db->from( $this->table );
+
+        $this->db->join('conteudos', 'conteudos.id = exercicios.idConteudo');
 
         $this->db->group_start();
         $this->db->like('enunciado', $string );
@@ -19,7 +21,7 @@ class Exercicios_model extends CI_Model {
         if( $quantidade !== FALSE )
             $this->db->limit( $quantidade, $pagina );
 
-        $this->db->order_by('id', 'DESC');
+        $this->db->order_by('exercicios.id', 'DESC');
 
         return $this->db->get()->result_array();
     }

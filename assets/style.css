@@ -67,3 +67,10 @@ li.nav-item {
     background: #007bff;
     color: #fff;
 }
+
+.exemplo {
+    padding: 15px;
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    margin-bottom:10px;
+}

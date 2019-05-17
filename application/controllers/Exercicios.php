@@ -116,4 +116,77 @@ class Exercicios extends CI_Controller {
 
         $this->template->load_view( $view, $data );
     }
+
+    public function listar_aluno() {
+
+        $this->load->helper('exercise_helper');
+
+        $data['quantity']           = 10;
+        $data['pagina'] 			= ( $this->input->get('per_page') ) ? $this->input->get('per_page') : 0;
+        $data['search'] 			= ( $this->input->get('search') ) ? $this->input->get('search') : FALSE;
+        
+		$data['exercicios'] 		= $this->exercicios_model->buscar( $data['search'], NULL, $data['quantity'], $data['pagina'] );
+		$data['total_registros']	= $this->exercicios_model->buscar( $data['search'], "count" );
+
+        $data['paginacao'] = build_pagination(
+			'painel/exercicios',
+			$data['total_registros'],
+			array(
+				'search' => $data['search'],
+				'quantity' => $data['quantity']
+			)
+        );
+
+        $this->template->load_view('aluno/exercicios-view', $data );
+    }
+
+    public function realizar( $id ) {
+
+        $this->load->model( array(
+            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'conteudos_model', 'anotacoes_model'
+        ));
+
+        $data['exercicio'] = $this->exercicios_model->selecionar( $id );
+        $data['conteudo'] = $this->conteudos_model->selecionar( $data['exercicio']->idConteudo );
+        $data['anotacoes'] = $this->anotacoes_model->listar( $data['exercicio']->idConteudo );
+
+        if( $data['exercicio']->tipo == "ME") {
+            $data['alternativas'] = $this->multipla_escolha_model->selecionar( $id );
+            $view = 'aluno/realizar-exercicio-me-view';
+        } elseif( $data['exercicio']->tipo == "CE" ) {
+            $view = 'aluno/realizar-exercicio-ce-view';
+        } elseif( $data['exercicio']->tipo == "LA" ) {
+            $data['lacunas'] = $this->lacunas_model->selecionar( $id );
+            $view = 'aluno/realizar-exercicio-la-view';
+        } elseif( $data['exercicio']->tipo == "BO" ) {
+            $view = 'aluno/realizar-exercicio-bo-view';
+        }
+
+        $this->template->load_view( $view, $data );
+    }
+
+    public function corrigir() {
+
+        $this->load->model( array(
+            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'conteudos_model', 'anotacoes_model'
+        ));
+
+        $data['exercicio'] = $this->exercicios_model->selecionar( $this->input->post('idExercicio') );
+
+        if( $data['exercicio']->tipo == "ME") {
+            $data['alternativas'] = $this->multipla_escolha_model->selecionar( $this->input->post('idExercicio') );
+            $view = 'aluno/corrigir-exercicio-me-view';
+        } elseif( $data['exercicio']->tipo == "CE" ) {
+            $data['resposta'] = $this->certo_errado_model->selecionar( $this->input->post('idExercicio') );
+            $view = 'aluno/corrigir-exercicio-ce-view';
+        } elseif( $data['exercicio']->tipo == "LA" ) {
+            $data['lacunas'] = $this->lacunas_model->selecionar( $this->input->post('idExercicio') );
+            $view = 'aluno/corrigir-exercicio-la-view';
+        } elseif( $data['exercicio']->tipo == "BO" ) {
+
+            $view = 'aluno/corrigir-exercicio-bo-view';
+        }
+
+        $this->template->load_view( $view, $data );
+    }
 }

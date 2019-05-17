@@ -43,9 +43,10 @@ class Exemplos_model extends CI_Model {
         return $this->db->delete( $this->table );
     }
 
-    public function listar() {
+    public function listar( $id ) {
         $this->db->select();
         $this->db->from( $this->table );
+        $this->db->where('idConteudo', $id );
         return $this->db->get()->result_array();
     }
 }

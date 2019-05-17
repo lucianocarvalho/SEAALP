@@ -1,3 +1,5 @@
+<h4 class="mb-3">Conteúdos</h4>
+
 <form method="GET">
 	<div class="form-row">
 		<div class="col-lg-10">
@@ -25,8 +27,7 @@
 <table class="table table-hover table-striped">
 	<thead>
 		<th>Título</th>
-		<th>Duração aproximada</th>
-		<th class="w-25 text-center"><i class="fas fa-play"></i></th>
+		<th colspan="2">Duração aproximada</th>
 	</thead>
 
 	<?php if( count( $conteudos ) == 0 ): ?>
@@ -41,8 +42,9 @@
 				<tr>
 					<td><?php echo $conteudo['titulo']; ?></td>
 					<td><?php echo reading_time( $conteudo['texto'] ); ?></td>
-					<td align="center">
-						<a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/conteudos/visualizar/' . $conteudo['id'] ); ?>"><i class="fas fa-play"></i> Iniciar conteúdo</a>
+					<td align="right">
+						<a class="btn btn-sm btn-primary" href="<?php echo base_url('painel/conteudos/visualizar/' . $conteudo['id'] ); ?>"><i class="fas fa-play"></i> Ler conteúdo</a>
+						<a class="btn btn-sm btn-secondary" href="<?php echo base_url(); ?>"><i class="fas fa-address-book mr-1"></i> Ir para os exercícios</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

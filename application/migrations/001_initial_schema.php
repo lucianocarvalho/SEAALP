@@ -65,6 +65,7 @@ class Migration_Initial_Schema extends CI_Migration {
         $this->db->query( add_foreign_key('exercicios', 'idConteudo', 'conteudos(id)', 'CASCADE', 'CASCADE') );
         $this->db->query( add_foreign_key('exemplos', 'idConteudo', 'conteudos(id)', 'CASCADE', 'CASCADE') );
         $this->db->query( add_foreign_key('anotacoes', 'idConteudo', 'conteudos(id)', 'CASCADE', 'CASCADE') );
+        $this->db->query( add_foreign_key('anotacoes', 'idUsuario', 'usuarios(id)', 'CASCADE', 'CASCADE') );
 
         $this->db->query( add_foreign_key('multipla_escolha', 'idExercicio', 'exercicios(id)', 'CASCADE', 'CASCADE') );
         $this->db->query( add_foreign_key('certo_errado', 'idExercicio', 'exercicios(id)', 'CASCADE', 'CASCADE') );
@@ -81,6 +82,9 @@ class Migration_Initial_Schema extends CI_Migration {
 
         $this->db->query( drop_foreign_key('anotacoes', 'idConteudo') );
         $this->db->query( drop_index('anotacoes', 'idConteudo') );
+
+        $this->db->query( drop_foreign_key('anotacoes', 'idUsuario') );
+        $this->db->query( drop_index('anotacoes', 'idUsuario') );
 
         $this->db->query( drop_foreign_key('multipla_escolha', 'idExercicio') );
         $this->db->query( drop_index('multipla_escolha', 'idExercicio') );

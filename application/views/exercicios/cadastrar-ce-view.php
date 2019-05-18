@@ -1,10 +1,11 @@
-<?php echo validation_errors(); ?>
+<?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
-<?php echo $exercicio->enunciado; ?>
+<h4><?php echo $exercicio->enunciado; ?></h4>
 
 <form method="POST">
-<div class="form-check">
-		<input class="form-check-input" type="radio" name="correta" id="certo" value="1">
+	<p>Marque a alternativa que deve ser correta:</p>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="correta" id="certo" value="1" checked>
 		<label class="form-check-label" for="certo">Certo</label>
 	</div>
 	<div class="form-check">

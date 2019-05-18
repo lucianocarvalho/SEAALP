@@ -9,7 +9,6 @@ class Bloco extends Base {
 	protected $id;
 	protected $idExercicio;
 	protected $texto;
-	protected $ordem;
 
 	public function schema() {
 		return array(
@@ -27,10 +26,6 @@ class Bloco extends Base {
 			'texto' => array(
 				'type' => 'VARCHAR',
 				'constraint' => 255,
-				'null' => false
-			),
-			'ordem' => array(
-				'type' => 'INT',
 				'null' => false
 			)
 		);
@@ -58,13 +53,5 @@ class Bloco extends Base {
 
 	public function setTexto($texto){
 		$this->texto = $texto;
-	}
-
-	public function getOrdem(){
-		return $this->ordem;
-	}
-
-	public function setOrdem($ordem){
-		$this->ordem = $ordem;
 	}
 }

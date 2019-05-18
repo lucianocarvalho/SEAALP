@@ -24,7 +24,7 @@ class Conteudo extends Base {
 				'null' => false
 			),
 			'texto' => array(
-				'type' => 'TEXT',
+				'type' => 'LONGTEXT',
 				'null' => false
 			)
 		);

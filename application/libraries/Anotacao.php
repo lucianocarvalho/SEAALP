@@ -7,6 +7,7 @@
 class Anotacao extends Base {
 
 	protected $id;
+	protected $idUsuario;
 	protected $idConteudo;
 	protected $texto;
 
@@ -18,13 +19,18 @@ class Anotacao extends Base {
 				'unique' => true,
 				'auto_increment' => true
 			),
+			'idUsuario' => array(
+				'type' => 'BIGINT',
+				'unsigned' => true,
+				'null' => false
+			),
 			'idConteudo' => array(
 				'type' => 'BIGINT',
 				'unsigned' => true,
 				'null' => false
 			),
 			'texto' => array(
-				'type' => 'TEXT',
+				'type' => 'LONGTEXT',
 				'null' => true
 			)
 		);
@@ -36,6 +42,14 @@ class Anotacao extends Base {
 
 	public function setId($id){
 		$this->id = $id;
+	}
+
+	public function getIdUsuario(){
+		return $this->idUsuario;
+	}
+
+	public function setIdUsuario($idUsuario){
+		$this->idUsuario = $idUsuario;
 	}
 
 	public function getIdConteudo(){

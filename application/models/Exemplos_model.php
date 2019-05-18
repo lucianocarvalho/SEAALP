@@ -49,4 +49,9 @@ class Exemplos_model extends CI_Model {
         $this->db->where('idConteudo', $id );
         return $this->db->get()->result_array();
     }
+
+    public function atualizar( Exemplo $exemplo ) {
+        $this->db->where('id', $exemplo->getId() );
+		return $this->db->update( $this->table, $exemplo->to_array() );
+    }
 }

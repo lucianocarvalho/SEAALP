@@ -1,5 +1,6 @@
+<h4 class="mb-3"><?php echo $conteudo->titulo; ?></h4>
 
-<a href="<?php echo base_url('admin/exemplos/cadastrar/' . $id ); ?>" class="btn btn-primary">Novo exemplo</a>
+<a href="<?php echo base_url('admin/exemplos/cadastrar/' . $conteudo->id ); ?>" class="btn btn-primary"><i class="fas fa-plus"></i> Novo exemplo</a>
 
 <p class="bold mb-3 mt-3">
 	<?php echo count( $exemplos ); ?> registros
@@ -12,9 +13,8 @@
 
 <table class="table table-hover table-striped">
 	<thead>
-		<th>#</th>
 		<th>Texto</th>
-		<th>Ações</th>
+		<th></th>
 	</thead>
 
 	<?php if( count( $exemplos ) == 0 ): ?>
@@ -27,12 +27,11 @@
 		<tbody>
 			<?php foreach( $exemplos as $exemplo ): ?>
 				<tr>
-					<td><?php echo $exemplo['id']; ?></td>
-					<td><?php echo $exemplo['texto']; ?></td>
-					<td>
-						<a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/conteudos/visualizar/' . $exemplo['id'] ); ?>">Visualizar</a>
-						<a class="btn btn-sm btn-dark" href="<?php echo base_url('admin/conteudos/editar/' . $exemplo['id'] ); ?>">Editar</a>
-						<a class="btn btn-sm btn-danger" href="<?php echo base_url('admin/conteudos/remover/' . $exemplo['id'] ); ?>">Remover</a>
+					<td class="align-middle"><?php echo $exemplo['texto']; ?></td>
+					<td align="right" class="align-middle">
+						<a class="btn btn-sm btn-primary" href="<?php echo base_url('admin/exemplos/visualizar/' . $exemplo['id'] ); ?>"><i class="fas fa-eye"></i> Visualizar</a>
+						<a class="btn btn-sm btn-dark" href="<?php echo base_url('admin/exemplos/editar/' . $exemplo['id'] ); ?>"><i class="fas fa-pencil-alt"></i> Editar</a>
+						<a class="btn btn-sm btn-danger" href="<?php echo base_url('admin/exemplos/remover/' . $exemplo['id'] ); ?>"><i class="fas fa-times"></i> Remover</a>
 					</td>
 				</tr>
 			<?php endforeach; ?>

@@ -1,6 +1,6 @@
 <h4>Cadastrar conteúdo</h4>
 
-<?php echo validation_errors(); ?>
+<?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
 <form method="POST">
 	<div class="form-group">
@@ -9,7 +9,7 @@
 	</div>
 	<div class="form-group">
 		<label>Conteúdo</label>
-		<textarea class="form-control" name="texto" placeholder="Digite o conteúdo..."></textarea>
+		<textarea class="form-control" name="texto" placeholder="Digite o conteúdo..." rows="15"></textarea>
 	</div>
 	<button type="submit" class="btn btn-primary">Cadastrar</button>
 </form>

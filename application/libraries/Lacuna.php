@@ -25,11 +25,11 @@ class Lacuna extends Base {
 				'null' => false
 			),
 			'texto' => array(
-				'type' => 'TEXT',
+				'type' => 'LONGTEXT',
 				'null' => false
 			),
 			'respostas' => array(
-				'type' => 'TEXT',
+				'type' => 'LONGTEXT',
 				'null' => false
 			)
 		);

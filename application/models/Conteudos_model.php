@@ -48,4 +48,9 @@ class Conteudos_Model extends CI_Model {
         $this->db->from( $this->table );
         return $this->db->get()->result_array();
     }
+
+    public function atualizar( Conteudo $conteudo ) {
+        $this->db->where('id', $conteudo->getId() );
+		return $this->db->update( $this->table, $conteudo->to_array() );
+    }
 }

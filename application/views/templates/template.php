@@ -38,7 +38,7 @@
                                 <?php else: ?>
                                     <a href="<?php echo base_url('login'); ?>" class="btn btn-sm btn-primary">Login</a>
                                     <a href="<?php echo base_url('cadastrar'); ?>" class="btn btn-sm btn-secondary">Cadastre-se</a>
-                                    <a href="<?php echo base_url('visitante'); ?>" class="btn btn-sm btn-dark">Iniciar como visitante</a>
+                                    <a href="<?php echo base_url('painel/conteudos'); ?>" class="btn btn-sm btn-dark">Iniciar como visitante</a>
                                 <?php endif; ?>         
                             </div>
                         </div>
@@ -48,31 +48,33 @@
         </header>
 
         <?php if( $this->session->perfil == "P" ): ?>
-            <div class="container mb-3">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <nav class="navbar navbar-expand-lg navbar-light">
-                            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                <span class="navbar-toggler-icon"></span>
-                            </button>
+            <div class="wrapper admin">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <nav class="navbar navbar-expand-lg navbar-dark">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
 
-                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                                <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('admin'); ?>">Home</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('admin/conteudos'); ?>">Conteúdos</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="<?php echo base_url('admin/exercicios'); ?>">Exercícios</a>
-                                    </li>
-                                </ul>
-                            </div><!-- navbar-collapse -->
-                        </nav>
-                    </div><!-- col-lg-12 -->
-                </div><!-- row -->
-            </div><!-- container -->
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('/'); ?>"><i class="fas fa-home"></i> Home</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('admin/conteudos'); ?>"><i class="fas fa-align-justify"></i> Conteúdos</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('admin/exercicios'); ?>"><i class="fas fa-address-book"></i> Exercícios</a>
+                                        </li>
+                                    </ul>
+                                </div><!-- navbar-collapse -->
+                            </nav>
+                        </div><!-- col-lg-12 -->
+                    </div><!-- row -->
+                </div><!-- container -->
+            </div>
         <?php endif; ?>
 
         <?php if( $this->session->perfil == "A" ): ?>
@@ -118,7 +120,7 @@
                 <div class="row">
                     <div class="col-lg-4 offset-md-4 text-center">
                         <p class="mb-0">Desenvolvido por alunos da Fatec Ourinhos como trabalho de conclusão de curso.</p>
-                        <p class="mb-0 font-weight-bold">MeuAprendizado - <?php echo date('Y'); ?></p>
+                        <p class="mb-0 font-weight-bold">TuttoLógica - <?php echo date('Y'); ?></p>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 <h4>Cadastre-se!</h4>
 
-<?php echo validation_errors(); ?>
+<?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
 <form method="POST">
 	<div class="form-group">

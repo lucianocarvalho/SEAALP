@@ -10,6 +10,14 @@
 <?php $respostas = unserialize( $lacuna->respostas ); ?>
 <?php $lacunas = explode(',', $this->input->post('lacunas', TRUE ) ); ?>
 
+<?php
+    $lacunas = array();
+
+    foreach( json_decode( $this->input->post('lacunas') ) as $lacuna ) {
+        $lacunas[] = $lacuna->value;
+    }
+?>
+
 <?php $answers = $respostas; ?>
 <?php foreach( $textos as $texto ): ?>
     <?php echo $texto; ?>

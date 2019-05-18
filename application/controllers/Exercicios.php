@@ -12,12 +12,16 @@ class Exercicios extends CI_Controller {
     }
 
     public function index() {
+        $this->load->model('conteudos_model');
+        $data['conteudos']          = $this->conteudos_model->listar();
+
         $data['quantity']           = 10;
         $data['pagina'] 			= ( $this->input->get('per_page') ) ? $this->input->get('per_page') : 0;
         $data['search'] 			= ( $this->input->get('search') ) ? $this->input->get('search') : FALSE;
-        
-		$data['exercicios'] 		= $this->exercicios_model->buscar( $data['search'], NULL, $data['quantity'], $data['pagina'] );
-		$data['total_registros']	= $this->exercicios_model->buscar( $data['search'], "count" );
+        $data['idConteudo'] 		= ( $this->input->get('idConteudo') ) ? $this->input->get('idConteudo') : NULL;
+
+		$data['exercicios'] 		= $this->exercicios_model->buscar( $data['idConteudo'], $data['search'], NULL, $data['quantity'], $data['pagina'] );
+		$data['total_registros']	= $this->exercicios_model->buscar( $data['idConteudo'], $data['search'], "count" );
 
         $data['paginacao'] = build_pagination(
 			'admin/exercicios',
@@ -65,7 +69,7 @@ class Exercicios extends CI_Controller {
             ) );
 
             $this->load->model( array(
-                'multipla_escolha_model', 'certo_errado_model', 'lacunas_model'
+                'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'blocos_model'
             ) );
 
             // Múltipla escolha
@@ -94,10 +98,26 @@ class Exercicios extends CI_Controller {
 
             // Lacunas
             if( $data['exercicio']->tipo == "LA" ) {
+                $lacunas = array();
+            
+                foreach( json_decode( $this->input->post('respostas') ) as $lacuna )
+                    $lacunas[] = $lacuna->value;
+            
                 $la = new Lacuna;
                 $la->fill( $this->input->post() )
-                    ->set('respostas', serialize( explode(',', $this->input->post('respostas') ) ) );
+                    ->set('respostas', serialize( $lacunas ) );
+
                 $this->lacunas_model->inserir( $la );
+                redirect('/admin/exercicios');
+            }
+
+            if( $data['exercicio']->tipo == "BO" ) {
+
+                $bloco = new Bloco;
+                $bloco->fill( $this->input->post() );
+
+                $this->blocos_model->inserir( $bloco );
+
                 redirect('/admin/exercicios');
             }
         }
@@ -112,6 +132,9 @@ class Exercicios extends CI_Controller {
             case "LA":
                 $view = 'exercicios/cadastrar-la-view';
                 break;
+            case "BO":
+                $view = 'exercicios/cadastrar-bo-view';
+                break;
         }
 
         $this->template->load_view( $view, $data );
@@ -120,13 +143,16 @@ class Exercicios extends CI_Controller {
     public function listar_aluno() {
 
         $this->load->helper('exercise_helper');
+        $this->load->model('conteudos_model');
 
         $data['quantity']           = 10;
         $data['pagina'] 			= ( $this->input->get('per_page') ) ? $this->input->get('per_page') : 0;
         $data['search'] 			= ( $this->input->get('search') ) ? $this->input->get('search') : FALSE;
+        $data['idConteudo'] 		= ( $this->input->get('idConteudo') ) ? $this->input->get('idConteudo') : NULL;
         
-		$data['exercicios'] 		= $this->exercicios_model->buscar( $data['search'], NULL, $data['quantity'], $data['pagina'] );
-		$data['total_registros']	= $this->exercicios_model->buscar( $data['search'], "count" );
+        $data['conteudos']          = $this->conteudos_model->listar();
+		$data['exercicios'] 		= $this->exercicios_model->buscar( $data['idConteudo'], $data['search'], NULL, $data['quantity'], $data['pagina'] );
+		$data['total_registros']	= $this->exercicios_model->buscar( $data['idConteudo'], $data['search'], "count" );
 
         $data['paginacao'] = build_pagination(
 			'painel/exercicios',
@@ -143,7 +169,7 @@ class Exercicios extends CI_Controller {
     public function realizar( $id ) {
 
         $this->load->model( array(
-            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'conteudos_model', 'anotacoes_model'
+            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'blocos_model', 'conteudos_model', 'anotacoes_model'
         ));
 
         $data['exercicio'] = $this->exercicios_model->selecionar( $id );
@@ -159,6 +185,7 @@ class Exercicios extends CI_Controller {
             $data['lacunas'] = $this->lacunas_model->selecionar( $id );
             $view = 'aluno/realizar-exercicio-la-view';
         } elseif( $data['exercicio']->tipo == "BO" ) {
+            $data['frase'] = $this->blocos_model->selecionar( $id );
             $view = 'aluno/realizar-exercicio-bo-view';
         }
 
@@ -168,7 +195,7 @@ class Exercicios extends CI_Controller {
     public function corrigir() {
 
         $this->load->model( array(
-            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'conteudos_model', 'anotacoes_model'
+            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'blocos_model', 'conteudos_model', 'anotacoes_model'
         ));
 
         $data['exercicio'] = $this->exercicios_model->selecionar( $this->input->post('idExercicio') );
@@ -183,10 +210,39 @@ class Exercicios extends CI_Controller {
             $data['lacuna'] = $this->lacunas_model->selecionar( $this->input->post('idExercicio') );
             $view = 'aluno/corrigir-exercicio-la-view';
         } elseif( $data['exercicio']->tipo == "BO" ) {
-
+            $data['frase'] = $this->blocos_model->selecionar( $this->input->post('idExercicio') );
             $view = 'aluno/corrigir-exercicio-bo-view';
         }
 
         $this->template->load_view( $view, $data );
+    }
+
+    public function visualizar( $id ) {
+        $data['exercicio'] = $this->exercicios_model->selecionar( $id );
+
+        $this->load->model( array(
+            'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'blocos_model'
+        ));
+
+        if( $data['exercicio']->tipo == "ME")
+            $data['alternativas'] = $this->multipla_escolha_model->selecionar( $id );
+
+        if( $data['exercicio']->tipo == "CE" )
+            $data['resposta'] = $this->certo_errado_model->selecionar( $id );
+
+        if( $data['exercicio']->tipo == "LA" )
+            $data['lacuna'] = $this->lacunas_model->selecionar( $id );
+        
+        if( $data['exercicio']->tipo == "BO" )
+            $data['frase'] = $this->blocos_model->selecionar( $id );
+
+        $this->template->load_view('exercicios/visualizar-view', $data );
+    }
+
+    public function remover( $id ) {
+        if( $this->exercicios_model->remover( $id ) )
+            $this->flashmessages->success('Removido com sucesso!');
+
+        redirect('/admin/exercicios');
     }
 }

@@ -61,8 +61,6 @@ $route['login'] = 'login/index';
 $route['login/auth'] = 'login/auth';
 $route['logout'] = 'login/logout';
 
-$route['admin'] = 'dashboard/admin';
-
 $route['admin/conteudos'] = 'conteudos/index';
 $route['admin/conteudos/cadastrar'] = 'conteudos/cadastrar';
 $route['admin/conteudos/visualizar/(:num)'] = 'conteudos/visualizar/$1';
@@ -78,7 +76,9 @@ $route['admin/exercicios/redigir/(:num)'] = 'exercicios/redigir/$1';
 
 $route['admin/exemplos/(:num)'] = 'exemplos/index/$1';
 $route['admin/exemplos/cadastrar/(:num)'] = 'exemplos/cadastrar/$1';
-
+$route['admin/exemplos/editar/(:num)'] = 'exemplos/editar/$1';
+$route['admin/exemplos/remover/(:num)'] = 'exemplos/remover/$1';
+$route['admin/exemplos/visualizar/(:num)'] = 'exemplos/visualizar/$1';
 
 $route['painel/conteudos'] = 'dashboard/conteudos';
 $route['painel/conteudos/visualizar/(:any)'] = 'conteudos/visualizar_aluno/$1';

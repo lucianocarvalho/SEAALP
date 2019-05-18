@@ -49,6 +49,24 @@ class Conteudos extends CI_Controller {
         $this->template->load_view('conteudos/cadastrar-view');
     }
 
+    public function editar( $id ) {
+        $data['conteudo'] = $this->conteudos_model->selecionar( $id );
+
+        $this->form_validation->set_rules('titulo', 'Título', 'required');
+        $this->form_validation->set_rules('texto', 'Texto', 'required');
+
+        if( $this->form_validation->run() ) {
+            $conteudo = new Conteudo;
+            $conteudo->fill( $this->input->post() );
+
+            $this->conteudos_model->atualizar( $conteudo );
+
+            redirect('/admin/conteudos');
+        }
+
+        $this->template->load_view('conteudos/editar-view', $data );
+    }
+
     public function visualizar( $id ) {
         $data['conteudo'] = $this->conteudos_model->selecionar( $id );
         $this->template->load_view('conteudos/visualizar-view', $data );

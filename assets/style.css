@@ -51,8 +51,12 @@ footer {
 }
 
 .wrapper {
-    background-color: #2b3e50;
+    background-color: #0062cc;
     padding: 15px 0px;
+}
+
+.wrapper.admin {
+    background-color: #2b3e50;
 }
 
 .wrapper .navbar {
@@ -73,4 +77,20 @@ li.nav-item {
     background: #fff;
     border: 1px solid #e2e2e2;
     margin-bottom:10px;
+}
+
+#sortable { 
+    list-style-type: none; 
+    margin: 0; 
+    padding: 0; 
+}
+
+ul#sortable li {
+    display: inline-block;
+    background-color: white;
+    padding: 15px;
+    margin-right: 10px;
+    font-weight: bold;
+    border: 1px solid #bbb;
+    box-shadow: 2px 2px 4px #bfbfbf;
 }

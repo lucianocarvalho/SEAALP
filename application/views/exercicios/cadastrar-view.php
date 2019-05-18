@@ -1,6 +1,6 @@
 <h4>Cadastrar exercício</h4>
 
-<?php echo validation_errors(); ?>
+<?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
 <form method="POST">
 	<div class="form-group">
@@ -17,7 +17,7 @@
 			<option value="ME">Múltipla escolha</option>
 			<option value="CE">Certo ou errado</option>
 			<option value="LA">Lacunas</option>
-			<option value="OB">Ordenação de blocos</option>
+			<option value="BO">Ordenação de blocos</option>
 		</select>
 	</div>
 	<div class="form-group">

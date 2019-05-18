@@ -4,16 +4,18 @@ class Exercicios_model extends CI_Model {
 
     private $table = 'exercicios';
 
-    public function buscar( $string = '', $type = "normal", $quantidade = 30, $pagina = 0 ) {
+    public function buscar( $idConteudo = NULL, $string = '', $type = "normal", $quantidade = 30, $pagina = 0 ) {
 
         $this->db->select('conteudos.*, exercicios.*');
         $this->db->from( $this->table );
-
         $this->db->join('conteudos', 'conteudos.id = exercicios.idConteudo');
 
         $this->db->group_start();
         $this->db->like('enunciado', $string );
         $this->db->group_end();
+
+        if( ! is_null( $idConteudo ) )
+            $this->db->where('idConteudo', $idConteudo );
 
         if( $type == 'count' )
             return $this->db->get()->num_rows();

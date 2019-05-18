@@ -12,11 +12,7 @@ class Dashboard extends CI_Controller {
     public function index() {
         $this->template->load_view('dashboard-view');
     }
-
-    public function admin() {
-        $this->template->load_view('admin-view');
-    }
-
+    
     public function conteudos() {
         $this->load->model('conteudos_model');
         $this->load->helper('reading_time_helper');

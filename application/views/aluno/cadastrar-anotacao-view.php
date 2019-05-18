@@ -1,6 +1,6 @@
 <h4>Cadastrar anotação</h4>
 
-<?php echo validation_errors(); ?>
+<?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
 
 <form method="POST">
 	<p><b>Conteúdo:</b> <?php echo $conteudo->titulo; ?></p>

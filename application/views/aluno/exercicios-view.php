@@ -2,8 +2,17 @@
 
 <form method="GET">
 	<div class="form-row">
-		<div class="col-lg-10">
+		<div class="col-lg-5">
 			<input type="text" class="form-control" name="search" placeholder="Digite a sua busca..." value="<?php echo isset( $search ) ? $search : ''; ?>">
+		</div>
+		<div class="col-lg-5">
+			<select name="idConteudo" class="form-control">
+				<option value="">Todos os conteúdos</option>
+				<?php foreach( $conteudos as $conteudo ): ?>
+					<?php $selected = ( $this->input->get('idConteudo') == $conteudo['id'] ) ? 'selected' : ''; ?>
+					<option value="<?php echo $conteudo['id']; ?>" <?php echo $selected; ?>><?php echo $conteudo['titulo']; ?></option>
+				<?php endforeach; ?>
+			</select>
 		</div>
 		<div class="col-lg-2">
 			<div class="w-100 d-table h-100">

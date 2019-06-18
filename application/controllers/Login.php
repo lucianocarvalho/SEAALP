@@ -10,10 +10,7 @@ class Login extends CI_Controller {
     }
 
     public function index() {
-        $this->template->load_view('login-view');
-    }
 
-    public function auth() {
         $this->load->library('usuario');
         $this->load->model('usuarios_model');
 
@@ -44,7 +41,7 @@ class Login extends CI_Controller {
             }
         }
 
-        redirect('/login');
+        $this->template->load_view('login-view');
     }
 
     public function logout() {

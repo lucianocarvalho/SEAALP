@@ -39,7 +39,10 @@ class Conteudos extends CI_Controller {
 
         if( $this->form_validation->run() ) {
             $conteudo = new Conteudo;
-            $conteudo->fill( $this->input->post() );
+            $conteudo->fill( array(
+                'titulo' => $this->input->post('titulo', TRUE ),
+                'texto' => nl2br( $this->input->post('texto', TRUE ) )
+            ) );
 
             $this->conteudos_model->inserir( $conteudo );
 
@@ -57,8 +60,12 @@ class Conteudos extends CI_Controller {
 
         if( $this->form_validation->run() ) {
             $conteudo = new Conteudo;
-            $conteudo->fill( $this->input->post() );
-
+            $conteudo->fill( array(
+                'id' => $this->input->post('id', TRUE ),
+                'titulo' => $this->input->post('titulo', TRUE ),
+                'texto' => nl2br( $this->input->post('texto', TRUE ) )
+            ) );
+            
             $this->conteudos_model->atualizar( $conteudo );
 
             redirect('/admin/conteudos');

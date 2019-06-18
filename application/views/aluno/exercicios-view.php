@@ -37,7 +37,8 @@
 	<thead>
 		<th class="w-25">Enunciado</th>
 		<th>Conteúdo</th>
-		<th colspan="2">Tipo</th>
+		<th class="text-center">Tipo</th>
+		<th></th>
 	</thead>
 
 	<?php if( count( $exercicios ) == 0 ): ?>
@@ -52,7 +53,7 @@
 				<tr>
 					<td class="align-middle"><?php echo $exercicio['enunciado']; ?></td>
 					<td class="align-middle"><?php echo $exercicio['titulo']; ?></td>
-					<td class="align-middle">
+					<td class="align-middle text-center">
 						<?php if( $exercicio['tipo'] == "ME" ): ?>
 							<span class="badge badge-pill badge-primary">Múltipla escolha</span>
 						<?php elseif( $exercicio['tipo'] == "CE" ): ?>

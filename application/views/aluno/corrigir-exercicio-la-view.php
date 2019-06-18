@@ -6,19 +6,19 @@
 <hr>
 
 <h5 class="mt-3 font-weight-bold">Resposta correta:</h5>
-<?php $textos = explode('%lacuna%', $lacuna->texto ); ?>
+<?php $textos = explode('LACUNA', $lacuna->texto ); ?>
 <?php $respostas = unserialize( $lacuna->respostas ); ?>
 <?php $lacunas = explode(',', $this->input->post('lacunas', TRUE ) ); ?>
 
 <?php
     $lacunas = array();
-
-    foreach( json_decode( $this->input->post('lacunas') ) as $lacuna ) {
+    $each = json_decode( $this->input->post('lacunas') );
+    foreach( $each as $lacuna ) {
         $lacunas[] = $lacuna->value;
     }
 ?>
 
-<?php $answers = $respostas; ?>
+<?php $answers = array_reverse( $respostas ); ?>
 <?php foreach( $textos as $texto ): ?>
     <?php echo $texto; ?>
     <span class="badge badge-success"><?php echo array_pop( $answers ); ?></span>
@@ -42,5 +42,9 @@
     </tr>
 <?php endforeach; ?>
 </table>
+
+<?php if( ! is_null( $proximo_exercicio ) ): ?>
+	<a href="<?php echo base_url('painel/exercicios/realizar/' . $proximo_exercicio->id ); ?>" class="btn btn-success"> Próximo exercício <i class="fas fa-arrow-right"></i></a>
+<?php endif; ?>
 
 <a href="<?php echo base_url('painel/exercicios'); ?>" class="btn btn-secondary"><i class="fas fa-undo-alt"></i> Voltar aos exercícios</a>

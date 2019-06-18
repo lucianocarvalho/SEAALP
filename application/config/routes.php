@@ -90,3 +90,23 @@ $route['painel/exercicios'] = 'exercicios/listar_aluno';
 $route['painel/exercicios/realizar/(:num)'] = 'exercicios/realizar/$1';
 
 $route['painel/exercicios/corrigir'] = 'exercicios/corrigir';
+
+
+
+$route['master/professores'] = 'professores/index';
+$route['master/professores/cadastrar'] = 'professores/cadastrar';
+$route['master/professores/remover/(:any)'] = 'professores/remover/$1';
+$route['master/professores/visualizar/(:any)'] = 'professores/visualizar/$1';
+$route['master/professores/editar/(:any)'] = 'professores/editar/$1';
+
+$route['master/alunos'] = 'alunos/index';
+$route['master/alunos/cadastrar'] = 'alunos/cadastrar';
+$route['master/alunos/remover/(:any)'] = 'alunos/remover/$1';
+$route['master/alunos/visualizar/(:any)'] = 'alunos/visualizar/$1';
+$route['master/alunos/editar/(:any)'] = 'alunos/editar/$1';
+
+$route['master/masters'] = 'masters/index';
+$route['master/masters/cadastrar'] = 'masters/cadastrar';
+$route['master/masters/remover/(:any)'] = 'masters/remover/$1';
+$route['master/masters/visualizar/(:any)'] = 'masters/visualizar/$1';
+$route['master/masters/editar/(:any)'] = 'masters/editar/$1';

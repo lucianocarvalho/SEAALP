@@ -47,7 +47,10 @@ class Exemplos extends CI_Controller {
         if( $this->form_validation->run() ) {
 
             $exemplo = new Exemplo;
-            $exemplo->fill( $this->input->post() );
+            $exemplo->fill( array(
+                'idConteudo' => $this->input->post('idConteudo', TRUE ),
+                'texto' => nl2br( $this->input->post('texto', TRUE ) )
+            ) );
 
             $this->exemplos_model->inserir( $exemplo );
 
@@ -76,7 +79,11 @@ class Exemplos extends CI_Controller {
         if( $this->form_validation->run() ) {
 
             $exemplo = new Exemplo;
-            $exemplo->fill( $this->input->post() );
+            $exemplo->fill( array(
+                'id' => $this->input->post('id', TRUE ),
+                'idConteudo' => $this->input->post('idConteudo'),
+                'texto' => nl2br( $this->input->post('texto', TRUE ) )
+            ) );
 
             $this->exemplos_model->atualizar( $exemplo );
 

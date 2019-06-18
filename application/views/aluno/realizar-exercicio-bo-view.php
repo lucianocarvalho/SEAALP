@@ -46,7 +46,7 @@
 <h5 class="mt-3">Blocos de textos:</h5>
 
 <form method="POST" action="<?php echo base_url('painel/exercicios/corrigir'); ?>">
-	<?php $palavras = explode(' ', $frase->texto ); ?>
+	<?php $palavras = explode(';', $frase->texto ); ?>
 	<?php shuffle( $palavras ); ?>
 
 	<ul id="sortable">

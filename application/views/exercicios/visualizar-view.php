@@ -53,7 +53,7 @@
 		<tr>
 			<td class="font-weight-bold">Texto correto:</td>
 			<td>
-				<?php $lacunas = explode('%lacuna%', trim( $lacuna->texto ) ); ?>
+				<?php $lacunas = explode('LACUNA', trim( $lacuna->texto ) ); ?>
 				<?php $respostas = unserialize( $lacuna->respostas ); ?>
 				<?php $answers = array_reverse( $respostas ); ?>
 
@@ -69,7 +69,7 @@
 		<tr>
 			<td class="font-weight-bold">Ordem correta:</td>
 			<td>
-				<?php $palavras = explode(' ', $frase->texto ); ?>
+				<?php $palavras = explode(';', $frase->texto ); ?>
 
 				<?php foreach( $palavras as $palavra ): ?>
 					<span class="badge badge-pill badge-secondary"><?php echo $palavra; ?></span>

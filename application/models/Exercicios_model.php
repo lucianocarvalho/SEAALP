@@ -23,7 +23,7 @@ class Exercicios_model extends CI_Model {
         if( $quantidade !== FALSE )
             $this->db->limit( $quantidade, $pagina );
 
-        $this->db->order_by('exercicios.id', 'DESC');
+        $this->db->order_by('exercicios.id', 'ASC');
 
         return $this->db->get()->result_array();
     }
@@ -50,5 +50,16 @@ class Exercicios_model extends CI_Model {
     public function remover( $id ) {
         $this->db->where('id', $id );
         return $this->db->delete( $this->table );
+    }
+
+    public function proximoExercicio( $exercicio )
+    {
+        $this->db->select();
+        $this->db->from( $this->table );
+        $this->db->where('idConteudo', $exercicio->idConteudo );
+        $this->db->where('id >', $exercicio->id );
+        $this->db->order_by('id', 'ASC');
+        $this->db->limit( 1 );
+        return $this->db->get()->row();
     }
 }

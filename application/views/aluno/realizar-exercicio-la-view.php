@@ -46,7 +46,7 @@
 <hr>
 
 <h5>Texto:</h5>
-<?php echo str_replace('%lacuna%', '<span class="badge badge-dark">LACUNA</span>', $lacunas->texto ); ?>
+<?php echo str_replace('LACUNA', '<span class="badge badge-dark">LACUNA</span>', $lacunas->texto ); ?>
 
 <h5 class="mt-3">Lacunas:</h5>
 
@@ -65,6 +65,6 @@
 <script type="text/javascript">
 $('[name=lacunas]')
     .tagify({
-		maxTags: <?php echo substr_count( $lacunas->texto, '%lacuna%'); ?>
+		maxTags: <?php echo substr_count( $lacunas->texto, 'LACUNA'); ?>
 	});
 </script>

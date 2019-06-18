@@ -194,11 +194,24 @@ class Exercicios extends CI_Controller {
 
     public function corrigir() {
 
+        $this->load->library('user_agent');
+
         $this->load->model( array(
             'multipla_escolha_model', 'certo_errado_model', 'lacunas_model', 'blocos_model', 'conteudos_model', 'anotacoes_model'
         ));
 
         $data['exercicio'] = $this->exercicios_model->selecionar( $this->input->post('idExercicio') );
+        $data['proximo_exercicio'] = $this->exercicios_model->proximoExercicio( $data['exercicio'] );
+
+        if( 
+            ( $data['exercicio']->tipo == "ME" && ! array_key_exists('alternativa', (array) $this->input->post() ) )  ||
+            ( $data['exercicio']->tipo == "CE" && ! array_key_exists('alternativa', (array) $this->input->post() ) )  ||
+            ( $data['exercicio']->tipo == "LA" && empty( $this->input->post('lacunas', TRUE ) ) )
+        ) {
+            $this->flashmessages->error('Você precisa responder o exercício.');
+            redirect( $this->agent->referrer() );
+            return;
+        }
 
         if( $data['exercicio']->tipo == "ME") {
             $data['alternativas'] = $this->multipla_escolha_model->selecionar( $this->input->post('idExercicio') );

@@ -55,9 +55,18 @@ footer {
     padding: 15px 0px;
 }
 
+.wrapper.master {
+    background-color: #b35a63;
+}
+
+.wrapper.master .navbar-dark .navbar-nav .nav-link {
+    color:#ffdbdb;
+}
+
 .wrapper.admin {
     background-color: #2b3e50;
 }
+
 
 .wrapper .navbar {
     padding:0;

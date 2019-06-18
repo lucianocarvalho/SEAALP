@@ -4,9 +4,18 @@
 
 <form method="POST">
 	<div class="form-group">
+		<p class="mb-0">Escreva o texto corrido normalmente, mas escreva <b>LACUNA</b> no local em que o aluno deve preencher.</small>
+		<p class="mb-0">Posteriormente, preencha os valores correspondentes às lacunas abaixo.</small>
+		
+		<hr>
+		<p class="font-weight-bold mb-1">Exemplo de preenchimento:</p>
+		<p class="mb-0"><b>Texto normal:</b> Java é uma linguagem de programação criada pela Sun Microsystems em 1995.</p>
+		<p class="mb-0"><b>Texto corrido:</b> Java é uma <b>LACUNA</b> criada pela <b>LACUNA</b> em 1995.</p>
+		<p class="mb-0"><b>Lacunas:</b> <i>linguagem de programação</i>, <i>Sun Microsystems</i></p>
+		<hr>
+
 		<label>Texto corrido:</label>
 		<textarea class="form-control" name="texto" placeholder="Digite o texto corrido..."></textarea>
-		<small class="muted">Preencha com %lacuna% dentro do texto corrido em que deseja inserir uma lacuna.</small>
 	</div>
 	<div class="form-group">
 		<label>Lacunas:</label>

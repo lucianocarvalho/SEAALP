@@ -21,6 +21,11 @@ class Usuarios extends CI_Controller {
 
         if( $this->form_validation->run() ) {
 
+            if( $this->usuarios_model->existeUsuario( $this->input->post('email') ) ) {
+                $this->flashmessages->error('Já existe um usuário cadastrado com esse e-mail.');
+                redirect('/cadastrar');
+            }
+
             $usuario = new Usuario;
             $usuario->fill( $this->input->post() )
                     ->set('senha', md5( $this->input->post('senha') ) )

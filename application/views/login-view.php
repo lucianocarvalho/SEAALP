@@ -1,10 +1,12 @@
 <div class="row">
 	<div class="col-md-4 offset-md-4">
 		<h4 class="text-center">Login</h4>
-		<form method="POST" action="<?php echo base_url('login/auth'); ?>">
+		<?php echo validation_errors('<div class="alert alert-danger" role="alert">', '</div>'); ?>
+		<form method="POST">
 			<div class="form-group">
 				<label>E-mail</label>
-				<input type="text" class="form-control" name="email" placeholder="Digite o seu e-mail...">
+				<?php $value = ( set_value('email') ) ? set_value('email') : ''; ?>
+				<input type="text" class="form-control" name="email" placeholder="Digite o seu e-mail..." value="<?php echo $value; ?>">
 			</div>
 			<div class="form-group">
 				<label>Senha</label>

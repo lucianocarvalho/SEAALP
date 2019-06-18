@@ -33,6 +33,11 @@ class Alunos extends CI_Controller {
     }
 
     public function cadastrar() {
+        if( $this->usuarios_model->existeUsuario( $this->input->post('email') ) ) {
+            $this->flashmessages->error('Já existe um usuário cadastrado com esse e-mail.');
+            redirect('/master/alunos/cadastrar');
+        }
+        
         $this->form_validation->set_rules('nome', 'Nome', 'required');
         $this->form_validation->set_rules('email', 'E-mail', 'required');
         $this->form_validation->set_rules('sexo', 'Sexo', 'required');

@@ -227,6 +227,11 @@ class Exercicios extends CI_Controller {
             $view = 'aluno/corrigir-exercicio-bo-view';
         }
 
+        // Salvamos na sessão para o botão de "Continuar de onde parei".
+        $this->session->set_userdata( array(
+            'proximoExercicio' => $data['proximo_exercicio']
+        ) );
+
         $this->template->load_view( $view, $data );
     }
 

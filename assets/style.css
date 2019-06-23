@@ -4,6 +4,20 @@
 	box-sizing: border-box;
 }
 
+@font-face {
+    font-family: "Saira";
+    src: url("/assets/fonts/Saira-Regular.ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Saira";
+    src: url("/assets/fonts/Saira-Bold.ttf");
+    font-weight: 700;
+    font-style: normal;
+}
+
 body {
     -webkit-font-smoothing: antialiased;
     font-family: 'Saira', sans-serif;
@@ -56,7 +70,7 @@ footer {
 }
 
 .wrapper.master {
-    background-color: #b35a63;
+    background-color: #ff6f7e;
 }
 
 .wrapper.master .navbar-dark .navbar-nav .nav-link {

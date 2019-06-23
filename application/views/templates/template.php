@@ -4,16 +4,12 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <script src="<?php echo base_url('assets/jquery-3.4.1/jquery-3.4.1.min.js'); ?>"></script>
-        <script defer src="https://use.fontawesome.com/releases/v5.8.2/js/all.js" integrity="sha384-DJ25uNYET2XCl5ZF++U8eNxPWqcKohUUBUpKGlNLMchM7q4Wjg2CUpjHLaL8yYPH" crossorigin="anonymous"></script>
+        <script defer src="<?php echo base_url('assets/fontawesome-free-5.9.0/js/all.min.js'); ?>"></script>
         <script src="<?php echo base_url('assets/bootstrap-4.0.0/js/bootstrap.min.js'); ?>"></script>
-        
-        <link href="https://fonts.googleapis.com/css?family=Saira:400,700" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/bootstrap-4.0.0/css/bootstrap.min.css'); ?>">
         <link rel="stylesheet" type="text/css" href="<?php echo base_url('assets/style.css'); ?>">
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.js"></script>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@8/dist/sweetalert2.min.css" id="theme-styles">
-
+        <script src="<?php echo base_url('assets/sweetalert2/sweetalert2.min.js'); ?>"></script>
+        <link rel="stylesheet" href="<?php echo base_url('assets/sweetalert2/sweetalert2.min.css'); ?>" id="theme-styles">
         <title>SEAALP</title>
     </head>
     <body>
@@ -138,8 +134,17 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="<?php echo base_url('painel/exercicios'); ?>"><i class="fas fa-address-book"></i> Exercícios</a>
                                         </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="<?php echo base_url('painel/anotacoes'); ?>"><i class="fas fa-book-open"></i> Anotações</a>
+                                        </li>
                                     </ul>
                                 </div><!-- navbar-collapse -->
+
+                                <?php if( $this->session->userdata('auth') && ! is_null( $this->session->userdata('proximoExercicio') ) ): ?>
+                                    <a href="<?php echo base_url('painel/exercicios/realizar/' . $this->session->userdata('proximoExercicio')->id ); ?>" class="btn btn-sm btn-light">
+                                        Continuar de onde parei <i class="fas fa-arrow-right"></i>
+                                    </a>
+                                <?php endif; ?>
                             </nav>
                         </div>
                     </div>

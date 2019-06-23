@@ -83,8 +83,10 @@ $route['admin/exemplos/visualizar/(:num)'] = 'exemplos/visualizar/$1';
 $route['painel/conteudos'] = 'dashboard/conteudos';
 $route['painel/conteudos/visualizar/(:any)'] = 'conteudos/visualizar_aluno/$1';
 
+$route['painel/anotacoes'] = 'anotacoes/index';
 $route['painel/anotacoes/cadastrar/(:any)'] = 'anotacoes/cadastrar/$1';
 $route['painel/anotacoes/remover/(:any)'] = 'anotacoes/remover/$1';
+$route['painel/anotacoes/editar/(:any)'] = 'anotacoes/editar/$1';
 
 $route['painel/exercicios'] = 'exercicios/listar_aluno';
 $route['painel/exercicios/realizar/(:num)'] = 'exercicios/realizar/$1';

@@ -31,6 +31,7 @@
 				<tr>
 					<td><?php echo $anotacao['texto']; ?></td>
 					<td align="right">
+						<a href="<?php echo base_url('painel/anotacoes/editar/' . $anotacao['id'] ); ?>" class="btn btn-sm btn-secondary"><i class="fas fa-pencil-alt"></i> EDITAR</a>
 						<a href="<?php echo base_url('painel/anotacoes/remover/' . $anotacao['id'] ); ?>" class="btn btn-sm btn-danger"><i class="fas fa-times"></i> REMOVER</a>
 					</td>
 				</tr>
